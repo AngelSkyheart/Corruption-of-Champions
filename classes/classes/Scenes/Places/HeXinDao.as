@@ -41,7 +41,7 @@ public class HeXinDao extends BaseContent
     public var riverdungeon:RiverDungeon = new RiverDungeon();
 	public var eraendirorsbulg:EraendirAndOrsbulg = new EraendirAndOrsbulg();
 
-    public function HeXinDao() {}
+    public function HeXinDao() {} 
 	
 	public function riverislandVillageStuff0():void {
 		spriteSelect(-1);
@@ -63,7 +63,7 @@ public class HeXinDao extends BaseContent
         var zodiacName:Array = ["monkey", "rooster", "dog", "pig", "rat", "ox", "tiger", "rabbit", "dragon", "snake", "horse", "goat"];
 		flags[kFLAGS.LUNAR_NEW_YEAR] = date.fullYear%12;
         flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] = zodiacName[int(flags[kFLAGS.LUNAR_NEW_YEAR])];
-        outputText("You go deeper in town and discover the whole place is indeed covered in red. The big question now is what should you check upon first?");
+        outputText("You go deeper in town and discover the whole place is indeed covered in red. The big question now is what should you check out first?");
 		menu();
 		if (!player.hasStatusEffect(StatusEffects.CanGetLunarGift)) addButton(0, "Gifts", riverislandVillageStuffLunarGifts);
 		addButton(1, "Food", riverislandVillageStuffLunarFood);
@@ -76,26 +76,26 @@ public class HeXinDao extends BaseContent
 	}
 	public function riverislandVillageStuffLunarGifts():void {
 		clearOutput();
-		outputText("There seems to be a gift exchange going about. Some people are handing over red envelopes, something about luck for the coming year. You get hold of one and open it hoping for great luck. You open the envelope and... ");
+		outputText("There seems to be a gift exchange going on. Some people are handing out red envelopes, something about luck for the coming year. You get ahold of one and open it hoping for great luck. You open the envelope and... ");
 		var Gems:Number = 50;
 		Gems += rand(100);
 		outputText("Wow! You were lucky! There was " + Gems + " spirit stones inside! This sure is good fortune for the coming year.");
 		player.createStatusEffect(StatusEffects.CanGetLunarGift,0,0,0,0);
 		flags[kFLAGS.SPIRIT_STONES] += Gems;
 		statScreenRefresh();
-		doNext(riverislandVillageStuffLunar);
+		doNext(riverislandVillageStuffLunar);													 
 	}
 	public function riverislandVillageStuffLunarFood():void {
 		clearOutput();
-		outputText("The local restaurant seems to be offering some speciality food and best of all; it's free! Some " + flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] + "-morphs are passing it all over for extra thematics. You proceed to grab a plate of these strange ravioli the people calls jiǎozi, taking the rice dessert they call niángāo right after. The meal is comforting and you would believe everything in Mareth was going fine right now if not for the reddish stormy sky in the far distance which contrasts these festivities.");
+		outputText("The local restaurant seems to be offering some specialty food and best of all; it's free! Some " + flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] + "-morphs are passing it out for extra thematics. You proceed to grab a plate of these strange ravioli the people calls jiǎozi, taking the rice dessert they call niángāo right after. The meal is comforting and you would believe everything in Mareth was going fine right now if not for the reddish stormy sky in the far distance which contrasts with these festivities.");
 		player.refillHunger(50);
 		cheatTime2(30);
 		doNext(riverislandVillageStuffLunar);
 	}
 	public function riverislandVillageStuffLunarClothing():void {
 		clearOutput();
-		outputText("As you take a corner you spot a " + flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] + " girl working at what appears to be a festive cloth store.");
-		outputText("\n\n\"<i>Come over people! Look the part! Buy a dress for the festivities only for 10 spirit stones! C'mon and buy while there's some left!</i>\"");
+		outputText("As you take a corner you spot a " + flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] + " girl working at what appears to be a festive clothing store.");
+		outputText("\n\n\"<i>Exclusive Festival Dresses! Look the part! Buy a dress for the festivities for only 10 spirit stones! C'mon and buy while there's some left!</i>\"");
 		outputText("\n\nDo you buy one from the " + flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] + " girl?");
 		menu();
 		if (flags[kFLAGS.SPIRIT_STONES] >= 10) addButton(1, "Yes", riverislandVillageStuffLunarClothing2);
@@ -117,7 +117,7 @@ public class HeXinDao extends BaseContent
 	}
 	private function dressBuy(itype:ItemType):void {
         clearOutput();
-        outputText("She hands you the dress after taking in your gems.");
+        outputText("She hands you the dress after taking your gems.");
 		outputText("\n\n\"<i>Happy year of the " + flags[kFLAGS.LUNAR_NEW_YEAR_ANIMAL] + ", I wish you great luck!</i>\"");
 		outputText("\n\nYou put the dress in your bag for now. Now to put it on.");
 		outputText("\n\n<b>You got a Lunar new year dress.</b>\n\n");
@@ -127,14 +127,15 @@ public class HeXinDao extends BaseContent
     }
 	public function riverislandVillageStuffLunarFireworks():void {
 		clearOutput();
-		outputText("There are some extravagantly beautiful fireworks exploding in the sky above town. Red rockets are regularly shot up there exploding in bright flashes. You chuckle inside pondering what would happen if some harpy accidentally were to use this aerial space at the time… would it become roasted chicken? Speaking of chickens while you were thinking about harpies a few imps indeed drop dead from the sky, guess some demons got a little too close to the explosion and got caught in the blast.");
+		outputText("There are some extravagantly beautiful fireworks exploding in the sky above town. Red rockets are regularly shot up there, exploding in bright flashes. You chuckle inside, pondering what would happen if some harpy accidentally were to use this aerial space at the time… would it become roasted chicken? Speaking of chicken, while you were thinking about harpies a few imps indeed drop dead from the sky. Guess some demons got a little too close to the explosions and got caught in a blast.");
 		doNext(camp.returnToCampUseFourHours);
 	}
 	public function riverislandVillageStuffLunarChiChi():void {
 		clearOutput();
-		outputText("You are surprised to spot Chi Chi in the crowd wearing a traditional kimono. The hinezumi notice you right away and invites you to join her.");
+		outputText("You are surprised to spot Chi Chi in the crowd wearing a traditional kimono. The hinezumi notices you right away and invites you to join her.");
+		//kimono? Traditional Japanese wear? I only ask cause up till now, everything's been primarily chinese only.
 		if (flags[kFLAGS.CHI_CHI_FOLLOWER] > 3) {
-			outputText("\n\n\"<i>Come over people! Look the part! Buy a dress for the festivities only for 50 gems! C'mon and buy while there's some left!</i>\"");
+			outputText("\n\n\"<i>Exclusive Festival Dresses! Look the part! Buy a dress for the festivities for only 50 gems! C'mon and buy while there's some left!</i>\"");
 			outputText("\n\nYou put the dress in your bag for now. Now to put it on.");
 		}
 		else if (flags[kFLAGS.CHI_CHI_FOLLOWER] == 3) {
@@ -145,25 +146,30 @@ public class HeXinDao extends BaseContent
 			outputText("\n\n\"<i>Say [name] if.. if the both of us were hypothetically truly a couple... would you kiss me right now?</i>\"");
 			outputText("\n\nYou sure would, why?");
 			outputText("\n\n\"<i>Well w..would you please kiss me, then? I..it's not like I'm really desperate for one but...</i>\"");
-			outputText("\n\nYou proceed to shut up her silly explanation by taking hold of her mouth and pulling her in for a deep kiss, her eyes opening wide in surprise before she gives herself up to you fully, her arms wrapping around you in a tight embrace.");
+			outputText("\n\nYou proceed to shut up her silly explanation by taking hold of her chin and pulling her in for a deep kiss, her eyes opening wide in surprise before she gives herself up to you fully, her arms wrapping around you in a tight embrace.");
 			outputText("\n\nYou both break the kiss a few seconds later, Chi Chi redder than a canine pepper.");
-			outputText("\n\n\"<i>T..That was nice. Don’t you dare go around in camp telling everyone we did that though.</i>\"");
+			outputText("\n\n\"<i>T..That was nice. Don’t you dare go around camp telling everyone we did that though.</i>\"");
 			outputText("\n\nYeah, sure, whatever she says. You spend a little more time with her before returning to camp.");
 		}
 		else {
-			outputText("\n\n\"<i>Oh it's you? Did you come to train? I’m sorry, but I'm taking a break today. It's the Lunar festival and this event only happens once a year. How about we share a cup of tea and watch the fireworks? You could use a break too, ya know?</i>\""); //WTF? Sake? What is this, Japan?
-			outputText("\n\nYou both share tea and food and jokes all night long while watching the fireworks. It's only when it gets very late that you bid her farewell and head back to camp.");
+			outputText("\n\n\"<i>Oh, it's you. Did you come to train? I’m sorry, but I'm taking a break today. It's the Lunar festival and this event only happens once a year. How about we share a cup of tea and watch the fireworks? You could use a break too, ya know?</i>\""); 
+                        //WTF? Sake? What is this, Japan?
+                        //Pretty sure it's a mix of Japan and China, considering there are kimono available as well.
+			outputText("\n\nYou both share tea, food, and jokes all night long while watching the fireworks. It's only when it gets very late that you bid her farewell and head back to camp.");
 		}
 		doNext(camp.returnToCampUseSixHours);
 	}
-
     public function riverislandVillageStuff():void {
         spriteSelect(-1);
         clearOutput();
-        outputText("He'Xin'Dao is a large village connected and assembled between many smaller islands in the middle of large river that flows from the east to the west. Aside from bridges connecting each of the islands together, two larger ones connects them as a whole to both sides of the river serving as the only points of access to the village.  The village is strategically laid out, preventing anyone from entering by swimming directly from the river to any of the islands, forcing people to use the bridges if they wish to enter.\n");
-        outputText("\n\nNear one of major briges is located merchant area with various smaller or larger places where all visitors can buy or sell various items. Among then two attracts most attention with first been largest stall here and other largest shop. On almost opposite side of village near other brige is located medium sized shop with sign indicating it govern local exchanges and transformation items market.");
-        outputText("\n\nAt the island located on west end of He'Xin'Dao you see one of biggest buildings here. From sounds of weapon clashing it seems to be some kind of local arena.");	//Side question, why can't the ones with wings fly in?
-        //outputText("\n.");	//Z czasem jak bede dodawac miejsca opis wioski bedzie rozbudowywany :P
+        outputText("He'Xin'Dao is a large village connected and assembled between many smaller islands in the middle of large river that flows from the east to the west. Aside from bridges connecting each of the islands together, two larger ones connect them as a whole to both sides of the river serving as the only points of access by land to the village.  The village is strategically laid out, preventing anyone from entering by swimming directly from the river to any of the islands, while rooftop ballistas deter any fliers from entering by air, forcing people to use the bridges if they wish to enter.");
+        outputText("\n\nNear one of the major bridges is located a merchant area with various small stalls and large shops where visitors can buy or sell various items. Among them, two attract the most attention with the first being the largest stall and the other the largest shop. Near the opposite side of the merchant area next to another bridge is a medium sized shop with a sign indicating it governs local exchanges and the transformation items market.");
+        outputText("\n\nAt the island located on the west end of He'Xin'Dao you see one of the biggest buildings in the village. From the sound of weapons clashing it seems to be some kind of local arena.");	
+        //Side question, why can't the ones with wings fly in?
+        //Z czasem jak bede dodawac miejsca opis wioski bedzie rozbudowywany :P 
+        //Google translation: Over time, as I add places, the description of the village will be expanded :P
+        //I provided an explanation if you wish to use it.
+        //outputText("\n.");
         riverislandMenuShow();
     }
 
@@ -179,6 +185,7 @@ public class HeXinDao extends BaseContent
 			else addButtonDisabled(4, "Dungeon", "You need to find someone to form a party with you if you wish to enter!");
 		}
         //addButton(5, "", ); siedziba lokalnej grupy zrzeszającej soul cultivators - PC aby potem pojsc dalej bedzie musial dolaczyc tutaj (pomyslec nad wiarygodnym sposobem zmuszenia go do tego - moze jakies ciekawe itemy/inne rzeczy dla czlonkow beda a miejsce sie zwolni jak wywala tak goblinke tworzynie golemow, ktora potem oczywiscie wcisnie sie do obozu PC aby w spokoju rozwijac sie w tworzeniu golemow itp.)
+        //Google Translation: the headquarters of the local soul cultivators group - PC, in order to go further, he will have to join here (think about a credible way to force him to do this - maybe some interesting items / other things for members will be free as the goblink crashes creating golems, which then of course will squeezes into the PC camp to calmly develop in creating golems etc.)												
         addButton(6, "JourTTEast", journeytotheeast.enteringInn);
         addButton(7, "Arena", soularena);
         addButton(8, "Restaurant", restaurantShiraOfTheEast);
@@ -233,16 +240,16 @@ public class HeXinDao extends BaseContent
 						"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  It seems like even the name of the manual could have been influenced by this realm's nature... either that or it's just a coincidence.  " //NTP-What does the second paragragh mean??? Tried my best here. #1
 				).hint("Triple Thrust Manual.");
 				addButton(6, "Draco Sweep", buyItem2,consumables.DRASMAN,
-						sayLine2(consumables.DRASMAN,"It's a manual for Draco Sweep, this simple technique allows you to unleash an attack that would strike in wide arc before you.  Perfect for when you are fighting a group of enemies. It also becomes more powerful as long you train your body and soul."),
+						sayLine2(consumables.DRASMAN,"It's a manual for Draco Sweep, this simple technique allows you to unleash an attack that strikes in a wide arc before you.  Perfect for when you are fighting a group of enemies. It also becomes more powerful when you train your body and soul."),
 						"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to use when fighting a group of enemies.  You don't often meet more than one enemy at at a time, but you're sure that deeper in this forsaken realm you will face groups or maybe even hordes of demons at once and would need something to deal with them.  "
 				).hint("Draco Sweep Manual.");
 				addButton(7, "Many Birds", buyItem2,consumables.MABIMAN,
 						sayLine2(consumables.MABIMAN,"It's a manual for Many Birds, this simple technique allows you to project a figment of your soulforce as a crystal traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
-						"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  The name of the manual is strange, but it makes you remember something...but what and from where you are not certain.  "
+						"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  The name of the manual is strange. It makes you remember something...but what and from where you are not certain.  "
 				).hint("Many Birds Manual.");
 				addButton(8, "Hail of Blades", buyItem2,consumables.HOB1MAN,
-						sayLine2(consumables.HOB1MAN,"It's a manual for Hail of Blades, this simple technique allows you to form few etheral weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
-						"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  The name of the manual is strange, but it makes you remember something...but what and from where you are not certain.  "
+						sayLine2(consumables.HOB1MAN,"It's a manual for Hail of Blades, this simple technique allows you to form a few ethereal weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
+						"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  The name of the manual is strange. It makes you remember something...but what and from where you are not certain.  "
 				).hint("Hail of Blades Manual.");
 			}
 			addButton(10, "FlamesOfLove", buyItem1,consumables.FOLBMAN,
@@ -250,15 +257,15 @@ public class HeXinDao extends BaseContent
 					"\n\nIt seems like some sort of art to deal with needless lust by changing it into another....more deadly form.  But what does rankless mean?  Is there a higher rank for this soulskill?  "
 			).hint("Flames of Love (Rankless) Manual.");
 			addButton(11, "IciclesOfLove", buyItem1,consumables.IOLBMAN,
-					sayLine1(consumables.IOLBMAN,"It's a manual for Icicles of Love (Rankless), this simple technique allows you to covert excess lust into icicles."),
+					sayLine1(consumables.IOLBMAN,"It's a manual for Icicles of Love (Rankless), this simple technique allows you to convert excess lust into icicles."),
 					"\n\nIt seems like some sort of art to deal with needless lust by changing it into another....more deadly form.  But what does rankless mean?  Is there a higher rank for this soulskill?  "
 			).hint("Icicles of Love (Rankless) Manual.");
 			addButton(12, "SoSisterhood", buyItem1,consumables.SOSBMAN,
-					sayLine1(consumables.SOSBMAN,"It's a manual for Storm of Sisterhood (Rankless), this simple technique allows you to convert excess wrath into ligthing."),
+					sayLine1(consumables.SOSBMAN,"It's a manual for Storm of Sisterhood (Rankless), this simple technique allows you to convert excess wrath into lightning."),
 					"\n\nIt seems like some sort of art to deal with needless wrath by changing it into another....more deadly form.  But what does rankless mean?  Is there a higher rank for this soulskill?  "
 			).hint("Storm of Sisterhood (Rankless) Manual.");
 			addButton(13, "NoBrotherhood", buyItem1,consumables.NOBBMAN,
-					sayLine1(consumables.NOBBMAN,"It's a manual for Night of Brotherhood (Rankless), this simple technique allows you to covert excess wrath into darkness."),
+					sayLine1(consumables.NOBBMAN,"It's a manual for Night of Brotherhood (Rankless), this simple technique allows you to convert excess wrath into darkness."),
 					"\n\nIt seems like some sort of art to deal with needless wrath by changing it into another....more deadly form.  But what does rankless mean?  Is there a higher rank for this soulskill?  "
 			).hint("Night of Brotherhood (Rankless) Manual.");
 			addButton(14, "Back", golemmerchant);
@@ -271,22 +278,22 @@ public class HeXinDao extends BaseContent
 					"\n\nWhether you are going to try to go deeper into all that 'soulforce' stuff or not, at least you now have something to use when fighting groups of enemies.  You don't often meet more than one enemy at at a time, but you're sure that deeper in this forsaken realm you will face groups or maybe even hordes of demons at once and would need something to deal with them.  "
 			).hint("Comet Manual.");
 			addButton(1, "V P Trans", buyItem2,consumables.VPTRMAN,
-					sayLine2(consumables.VPTRMAN,"It's a manual for Violet Pupil Transformation, this advanced technique allows you to channel soulforce into regenerative power that would fill your whole body allowing you to recover even from the brink of death.  It's only flaw is that it constantly drains the cultivator's soulforce so you could end up in a tight situation without enough soulforce to use other skills."),
-					"\n\nIt seems like it's similar to a healing spell soul skill, but instead of being used immediately, with enough soulforce it could be kept active for a very long period of time.  It should give you another edge during your crusade against demons.  Additionally, the ability to heal from the brink of death could prove to be useful in future fights.  "
+					sayLine2(consumables.VPTRMAN,"It's a manual for Violet Pupil Transformation, this advanced technique allows you to channel soulforce into regenerative power that would fill your whole body allowing you to recover even from the brink of death.  Its only flaw is that it constantly drains the cultivator's soulforce so you could end up in a tight situation without enough soulforce to use other skills."),
+					"\n\nIt seems like it's similar to a healing spell soul skill, but instead of being used immediately, with enough soulforce it could be kept active for a very long period of time.  It should give you another edge during your crusade against the demons.  Additionally, the ability to heal from the brink of death could prove to be useful in future fights.  "
 			).hint("Violet Pupil Transformation Manual.");
 			if (player.findPerk(PerkLib.SoulPersonage) >= 0) {
 				addButton(4, "Sextuple Thrust", buyItem2,consumables.SEXTMAN,
 						sayLine2(consumables.SEXTMAN,"It's a manual for Sextuple Thrust, this simple technique allows you to unleash six thrusts that will become stronger and stronger as you train your body and soul."),
-						"\n\nWhether you are going to go deeper into all that 'soulforce' stuff or not, at least you now have something to train with.  Although seems even name of the manual mentioning thrusting seems like it could have been influenced by this realm nature...or it's just a coincidence.  " 
+						"\n\nWhether you are going to go deeper into all that 'soulforce' stuff or not, at least you now have something to train with.  Although the name of the manual mentioning thrusting seems like it could have been influenced by this realm's nature... or it's just a coincidence.  " 
 				).hint("Sextuple Thrust Manual."); //NTP-What does the second paragragh mean??? Tried my best here. #1
 				addButton(5, "Grandiose Hail of Blades", buyItem2,consumables.HOB2MAN,
 						sayLine2(consumables.HOB2MAN,"It's a manual for Grandiose Hail of Blades, this technique allows you to form many etheral weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
-						"\n\nWhether you are going to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  The name of the manual is strange, but it makes you remember something...but what and from where you not certain.  "
+						"\n\nWhether you are going to go deeper into all that 'soulforce' stuff or not, at least you now have something to begin with.  The name of the manual is strange, it makes you remember something... but what and from where you're not certain.  "
 				).hint("Grandiose Hail of Blades Manual.");
 			}
 			if (player.findPerk(PerkLib.SoulWarrior) >= 0) {
 				addButton(7, "MGSFRecovPill", buyItem2,consumables.MG_SFRP,
-					sayLine2(consumables.MG_SFRP,"It's a rather useful item for all cultivators at Soul Warrior stage or higher, this small pill can help you restore some of your soulforce and would provide much more than the low-grade one.")).hint("Mid-grade Soulforce Recovery Pill.");
+					sayLine2(consumables.MG_SFRP,"It's a rather useful item for all cultivators at Soul Warrior stage or higher, this small pill can help you restore some of your soulforce and provides much more than the low-grade one.")).hint("Mid-grade Soulforce Recovery Pill.");
 			}
             addButton(14, "Back", golemmerchant);
             statScreenRefresh();
@@ -295,28 +302,28 @@ public class HeXinDao extends BaseContent
 			menu();
 			addButton(0, "Nonuple Thrust", buyItem2,consumables.NONTMAN,
 					sayLine2(consumables.NONTMAN,"It's a manual for Nonuple Thrust, this technique allows you to unleash nine thrusts that will become stronger and stronger as you train your body and soul."),
-					"\n\nSince you are going deeper into soulforce, you got something more advanced to train with.  Although seems even name of the manual mentioning thrusting seems like it could have been influenced by this realm nature...or it's just a coincidence.  "
+					"\n\nSince you are going deeper into soulforce, you got something more advanced to train with.  Although the name of the manual mentioning thrusting seems like it could have been influenced by this realm's nature... or it's just a coincidence.  "
 			).hint("Nonuple Thrust Manual."); //NTP-What does the second paragragh mean??? Tried my best here. #1
 			addButton(1, "GHoMB", buyItem2,consumables.HOB3MAN,
-					sayLine2(consumables.HOB3MAN,"It's a manual for Grandiose Hail of Moon Blades, this technique allows you to form a huge amount of etheral weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
-					"\n\nSince you are going deeper into soulforce, you got something more advanced to train with.  The name of the manual is strange, but it makes you remember something...but what and from where you not certain.  "
+					sayLine2(consumables.HOB3MAN,"It's a manual for Grandiose Hail of Moon Blades, this technique allows you to form a huge amount of ethereal weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
+					"\n\nSince you are going deeper into soulforce, you got something more advanced to train with.  The name of the manual is strange, it makes you remember something... but what and from where you not certain.  "
 			).hint("Grandiose Hail of Moon Blades Manual.");
 			/*addButton(2, "Yin Yang Blast", buyItem2,consumables.YYB_MAN,
-					sayLine2(consumables.YYB_MAN,"It's a manual for Yin Yang Blast, this technique allows you to make team attack using Yin Palm and Yang Fist to ."),
-					"\n\nSince you going deeper into all that 'soulforce' stuff you now got something to train with someone that would goes into fights alongside you.  Maybe there is some more of those 'combined' soulskills somewhere?  "
+					sayLine2(consumables.YYB_MAN,"It's a manual for Yin Yang Blast, this technique allows you to make a team attack using Yin Palm and Yang Fist."),
+					"\n\nSince you are going deeper into all that 'soulforce' stuff, you've now got something to train with someone that goes into fights alongside you.  Maybe there is some more of those 'combined' soulskills somewhere?  "
 			).hint("Yin Yang Blast Manual.");*/
 			addButton(14, "Back", golemmerchant);
             statScreenRefresh();
 		}/*
-		if (player.findPerk(PerkLib.SoulExalt) >= 0) { lub soul overlord - each soul stage above starting allow to extend channeling time by 1 round
+		if (player.findPerk(PerkLib.SoulExalt) >= 0) { lub soul overlord - each soul stage above the first allows you to extend channeling time by 1 round
 			addButton(1, "GHoMB", buyItem2,consumables.HOB4MAN,
-					sayLine2(consumables.HOB4MAN,"It's a manual for Grandiose Hail of Moon Blades, this technique allows you to form massive amount of etheral weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
-					"\n\nYou already went so deep into becoming cultivator so why not?  'Few' more weapons formed will not hurt at this point, right?  "
+					sayLine2(consumables.HOB4MAN,"It's a manual for Grandiose Hail of Moon Blades, this technique allows you to form massive amounts of ethereal weapons traveling at extreme speeds that will become stronger and stronger as you train your body and soul."),
+					"\n\nYou've already gone this far into becoming a soul cultivator so why not?  A 'few' more weapons formed won't hurt at this point, right?  "
 			).hint("Grandiose Heavenly Hail of Yin-Yang Blades: Endless Tide Manual.");
 		}*/
 		if (player.findPerk(PerkLib.SoulOverlord) >= 0) {
 			addButton(10, "HGSFRecovPill", buyItem2,consumables.HG_SFRP,
-					sayLine2(consumables.HG_SFRP,"It's a rather useful item for all cultivators at Soul Overlord stage or higher, this small pill can help you restore some of your soulforce and would provide much more than the mid-grade one.")).hint("High-grade Soulforce Recovery Pill.");
+					sayLine2(consumables.HG_SFRP,"It's a rather useful item for all cultivators at Soul Overlord stage or higher, this small pill can help you restore some of your soulforce and provides much more than the mid-grade one.")).hint("High-grade Soulforce Recovery Pill.");
 		}
         addButton(14, "Back", riverislandVillageStuff);
         statScreenRefresh();
@@ -358,12 +365,11 @@ public class HeXinDao extends BaseContent
         outputText(descString);
         doYesNo(curry(debitItem2,returnFunc,shopKeep,priceRate,itype,onBuyString),returnFunc);
     }
-
     public function mogahenmerchant():void {
         clearOutput();
         outputText("You enter a shop titled 'Transformative Items and Exchanges' from the sign on its entrance. Inside you see a few shelves with many different items on display.  Most items seem rather generic, but a few items gathered are far more difficult to come by and rarer to encounter.");
         outputText("\n\nAs you're looking over the stalls, the owner almost silently approaches you. He announces his presence by clearing his throat. You turn to face him, only to be greeted by him smiling at you like a cat that caught the mouse. After a moment of pause, he breaks the silence.");
-        outputText("\n\n\"<i>Welcome to my humble shop dear and precious customer. I am Moga Hen. What needs bring you here today? To repair some damage caused by using items you casually picked up or to obtain some specific change? Or perhaps you need to exchange gems for spirit stones, mayhaps even the other way round? I could even give you a fair price on special items that are useless for non-cultivators.</i>\" Each word sounds almost like it was repeated countless times.\n\n");
+         outputText("\n\n\"<i>Welcome to my humble shop dear and precious customer. I am Moga Hen. What needs bring you here today? To repair some damage caused by using items you casually picked up? To obtain some specific change? Or perhaps you need to exchange gems for spirit stones, mayhaps even the other way round? I could even give you a fair price on special items that are useless for non-cultivators.</i>\" Each word sounds almost like they've been repeated countless times before.\n\n");
         var buyItem1:Function = curry(confirmBuy1,mogahenmerchant,"Moga",3);
         var buyItem2:Function = curry(confirmBuy2,mogahenmerchant,"Moga",5);
         var introText:String = "When you point towards one of the items on display the merchant says, \"<i>This item is used to embrace the ";
@@ -391,7 +397,7 @@ public class HeXinDao extends BaseContent
         //buyItem,consumables.,sayLine(consumables.,""),onBuyString
         function Tier1():void {
             menu();
-            addButton(0, "BlackPp", buyItem1,consumables.BLACKPP,sayLine1(consumables.BLACKPP,"dog"),onBuyString1).hint("Buy solid black canine pepper.\nCost: " + String(consumables.BLACKPP.value * 3) + " Gems");
+            addButton(0, "BlackPp", buyItem1,consumables.BLACKPP,sayLine1(consumables.BLACKPP,"dog"),onBuyString1).hint("Buy a solid black canine pepper.\nCost: " + String(consumables.BLACKPP.value * 3) + " Gems");
             addButton(1, "BulbyPp", buyItem1,consumables.BULBYPP,sayLine1(consumables.BULBYPP,"dog"),onBuyString1).hint("Buy a bulbous pepper.\nCost: " + String(consumables.BULBYPP.value * 3) + " Gems");
             addButton(2, "DblPepp", buyItem1,consumables.DBLPEPP,sayLine1(consumables.DBLPEPP,"dog"),onBuyString1).hint("Buy a double canine pepper.\nCost: " + String(consumables.DBLPEPP.value * 3) + " Gems");
             addButton(3, "KnottyP", buyItem1,consumables.KNOTTYP,sayLine1(consumables.KNOTTYP,"dog"),onBuyString1).hint("Buy a knotty canine pepper.\nCost: " + String(consumables.KNOTTYP.value * 3) + " Gems");
@@ -407,7 +413,7 @@ public class HeXinDao extends BaseContent
             addButton(0, "Shark.T", buyItem1,consumables.SHARK_T,sayLine1(consumables.SHARK_T,"shark"),onBuyString1).hint("Buy a sharp shark tooth.\nCost: " + String(consumables.SHARK_T.value * 3) + " Gems");
             addButton(1, "GoldenRind", buyItem1,consumables.GLDRIND,sayLine1(consumables.GLDRIND,"deer"),onBuyString1).hint("Buy a golden rind.\nCost: " + String(consumables.GLDRIND.value * 3) + " Gems");
             addButton(2, "KangaFruit", buyItem1,consumables.KANGAFT,sayLine1(consumables.KANGAFT,"kangaroo"),onBuyString1).hint("Buy a piece of kanga fruit.\nCost: " + String(consumables.KANGAFT.value * 3) + " Gems");
-            addButton(3, "BladeGrass", buyItem1,consumables.BLADEGR,sayLine1(consumables.BLADEGR,"mantis"),onBuyString1).hint("Buy a blade shaped grass.\nCost: " + String(consumables.BLADEGR.value * 3) + " Gems");
+            addButton(3, "BladeGrass", buyItem1,consumables.BLADEGR,sayLine1(consumables.BLADEGR,"mantis"),onBuyString1).hint("Buy blade shaped grass.\nCost: " + String(consumables.BLADEGR.value * 3) + " Gems");
             addButton(4, "Scorpinum", buyItem1,consumables.SCORICO,sayLine1(consumables.SCORICO,"scorpion"),onBuyString1).hint("Buy a vial of Scorpinum.\nCost: " + String(consumables.SCORICO.value * 3) + " Gems");
             addButton(5, "YetiCum", buyItem1,consumables.YETICUM,sayLine1(consumables.YETICUM,"yeti"),onBuyString1).hint("Buy a bottle of Yeti Cum.\nCost: " + String(consumables.YETICUM.value * 3) + " Gems");
             addButton(6, "BayrLeaf", buyItem1,consumables.BAYRLEA,sayLine1(consumables.BAYRLEA,"bear"),onBuyString1).hint("Buy a Bayr leaf.\nCost: " + String(consumables.BAYRLEA.value * 3) + " Gems");
@@ -429,7 +435,7 @@ public class HeXinDao extends BaseContent
 		function Tier4():void {
 			menu();
             addButton(0, "SatyrWine", buyItem2,consumables.SATYR_W,sayLine2(consumables.SATYR_W,"satyr"),onBuyString2).hint("Buy a bottle of satyr wine.\nCost: " + String(consumables.SATYR_W.value / 5) + " Spirit Stones");
-            addButton(1, "DrakeHeart", buyItem2,consumables.DRAKHRT,sayLine2(consumables.DRAKHRT,"dragon"),onBuyString2).hint("Buy a drake's heart's flower.\nCost: " + String(consumables.DRAKHRT.value / 5) + " Spirit Stones");
+            addButton(1, "DrakeHeart", buyItem2,consumables.DRAKHRT,sayLine2(consumables.DRAKHRT,"dragon"),onBuyString2).hint("Buy a drake's heart flower.\nCost: " + String(consumables.DRAKHRT.value / 5) + " Spirit Stones");
             addButton(2, "C.Venom", buyItem2,consumables.C_VEMOM,sayLine2(consumables.C_VEMOM,"Centipede"),onBuyString2).hint("Buy a bottle of Centipede venom.\nCost: " + String(consumables.C_VEMOM.value / 5) + " Spirit Stones");
             addButton(3, "Hummus", buyItem2,consumables.HUMMUS_,sayLine2(consumables.HUMMUS_,"humanity"),onBuyString2).hint("Buy a blob of cheesy-looking hummus.\nCost: " + String(consumables.HUMMUS_.value / 5) + " Spirit Stones");
             addButton(4, "ChillyP", buyItem2,consumables.CHILLYP,sayLine2(consumables.CHILLYP,"winter wolf"),onBuyString2).hint("Buy a Chilly pepper.\nCost: " + String(consumables.SATYR_W.value / 5) + " Spirit Stones");
@@ -465,7 +471,7 @@ public class HeXinDao extends BaseContent
                 case 5:outputText("After picking the lower rate for gems to stones you count out the gems before giving them to the merchant. With barely noticable mumbling about the customer being stingy he slowly finishes the transaction, giving you five spirit stones.");break;
                 case 10:outputText("After picking the middle rate for gems to stones you count out the gems before giving them to the merchant. He finishes the transaction, giving you ten spirit stones.");break;
                 case 50:outputText("After picking the higher rate for gems to stones you count out the gems before giving them to the merchant. With slight haste he finishes the transaction, giving you fifty spirit stones.");break;
-                case 100:outputText("After picking the highest rate for gems to stones you count out the gems before giving them to the merchant. With haste he finishes the transaction, giving you hundred spirit stones.");break;
+                case 100:outputText("After picking the highest rate for gems to stones you count out the gems before giving them to the merchant. With haste he finishes the transaction, giving you a hundred spirit stones.");break;
             }
             player.gems -= 20*value;
             flags[kFLAGS.SPIRIT_STONES]+=value;
@@ -474,7 +480,7 @@ public class HeXinDao extends BaseContent
                 case 1:outputText("After picking the lowest rate for stones to gems you hand over one stone to the merchant. With noticable mumbling about the customer being stingy he slowly finishes the transaction, giving you your gems.");break;
                 case 5:outputText("After picking the low  rate for stones to gems you hand over five stones to the merchant. With barely noticable mumbling about the customer being stingy he slowly finishes the transaction, giving you your gems.");break;
                 case 10:outputText("After picking the middle rate for stones to gems you hand over ten stones to the merchant. He finishes the transaction, giving you your gems.");break;
-                case 50:outputText("After picking the high rate for stones to gems you hand over fifty stones to the merchant. With slight haste he finishes the transaction, giving youg your gems.");break;
+                case 50:outputText("After picking the high rate for stones to gems you hand over fifty stones to the merchant. With slight haste he finishes the transaction, giving you your gems.");break;
                 case 100:outputText("After picking the highest rate for stones to gems you hand over a hundred stones to the merchant. With haste he finishes the transaction, giving you your gems.");break;
             }
             player.gems += 5*value;
@@ -509,7 +515,7 @@ public class HeXinDao extends BaseContent
     }
     public function sellFiveGolemCores():void {
         clearOutput();
-        outputText("\"<i>Golem cores. Let me check...yes all of them seems to be in decent shape,</i>\" after examination he walks away and return shortly. \"<i>Here are your five stones for them.</i>\"");
+        outputText("\"<i>Golem cores. Let me check...yes all of them seems to be in decent shape,</i>\" after examination he walks away and returns shortly. \"<i>Here are your five stones for them.</i>\"");
         player.destroyItems(useables.GOLCORE, 5);
         flags[kFLAGS.SPIRIT_STONES] += 5;
         doNext(sellItemsForSpiritStones);
@@ -523,14 +529,14 @@ public class HeXinDao extends BaseContent
     }
     public function sellFivePurpleCrystalShards():void {
         clearOutput();
-        outputText("\"<i>Purple crystal shards. Let me check...yes all of them seems to be in decent state,</i>\" after examination he walks away and return shortly. \"<i>Here are your ten stones for them.</i>\"");
+        outputText("\"<i>Purple crystal shards. Let me check...yes all of them seems to be in decent state,</i>\" after examination he walks away and returns shortly. \"<i>Here are your ten stones for them.</i>\"");
         player.destroyItems(useables.PCSHARD, 5);
         flags[kFLAGS.SPIRIT_STONES] += 10;
         doNext(sellItemsForSpiritStones);
     }
     public function sellOneElementalShard():void {
         clearOutput();
-        outputText("\"<i>A single elemental shard. It's still posses alot energy, so that will be a three spirit stones,</i>\" he states after examining the shard. Moments after he went to put away the shard Moga returns and gives you three stone.");
+        outputText("\"<i>A single elemental shard. It still possesses alot of energy, so that will be three spirit stones,</i>\" he states after examining the shard. Moments after he went to put away the shard Moga returns and gives you three stone.");
         player.destroyItems(useables.ELSHARD, 1);
         flags[kFLAGS.SPIRIT_STONES] += 3;
         doNext(sellItemsForSpiritStones);
@@ -544,14 +550,14 @@ public class HeXinDao extends BaseContent
     }
     public function sellOneEIchorVial():void {
         clearOutput();
-        outputText("\"<i>A single vial of E-Ichor. It's super rare item, so... i will give you... twenty spirit stones,</i>\" he states after very lpong examination of the vial. Moments after he went to put away the vial Moga returns and gives you twenty stone, with shaky hand as if parting with something precious.");
+        outputText("\"<i>A single vial of E-Ichor. It's a super rare item, so... i will give you... twenty spirit stones,</i>\" he states after a very long examination of the vial. Moments after he went to put away the vial Moga returns and gives you twenty stones, with shaky hands as if parting with something precious.");
         player.destroyItems(useables.E_ICHOR, 1);
         flags[kFLAGS.SPIRIT_STONES] += 20;
         doNext(sellItemsForSpiritStones);
     }
     public function sellFiveEIchorVials():void {
         clearOutput();
-        outputText("\"<i>Vials of E-Ichor. Let me check...yes all of them seems to be decently preserved,</i>\" after long examination he walks away and return after even longer time. \"<i>Here are your hun... hundred stones for them...</i>\"");
+        outputText("\"<i>Vials of E-Ichor. Let me check...yes all of them seems to be decently preserved,</i>\" after a long examination he walks away and return after an even longer time. \"<i>Here are your hun... hundred stones for them...</i>\"");
         player.destroyItems(useables.E_ICHOR, 5);
         flags[kFLAGS.SPIRIT_STONES] += 100;
         doNext(sellItemsForSpiritStones);
@@ -559,23 +565,25 @@ public class HeXinDao extends BaseContent
 
     public function serenamerchant():void {
         clearOutput();//Serena - female siren npc
-        outputText("After entering the shop with a sign saying 'Equipment' over the doors you see a few shelves filled with various weapons, shields, armors and even rarer items like rings and necklaces. Behind the desk located in the central point of the shop you see a woman that seems to have mixed race traits. A shark face and a tail that sometimes show up on either side of the desk contrasts it's owner's feather covered arms that look more similar to bird wings.");
-        outputText("\n\n\"<i>Greetings dear customer. I'm Serena and this is my humble shop. Look around and if something catches your eyes let me know,</i>\" she say all that almost entirely in one breath after noticing your presence.");
+        outputText("After entering the shop with a sign saying 'Equipment' over the doors you see a few shelves filled with various weapons, shields, armor and even rarer items like rings and necklaces. Behind the desk located in the central point of the shop you see a woman that seems to have mixed race traits. A shark face and a tail that sometimes shows up on either side of the desk contrasts it's owner's feather covered arms that look similar to bird wings.");
+        outputText("\n\n\"<i>Greetings dear customer. I'm Serena and this is my humble shop. Look around and if something catches your eye let me know,</i>\" she says all that almost entirely in one breath after noticing your presence.");
         menu();
         addButton(1, "Shelf 1", soulequipmentshelf1).hint("Soul Training Equipment");
         addButton(2, "Shelf 2", soulequipmentshelf2).hint("Weapons");
-        addButton(3, "Shelf 3", soulequipmentshelf3).hint("Armors");
+        addButton(3, "Shelf 3", soulequipmentshelf3).hint("Armor");
         addButton(6, "Shelf 4", soulequipmentshelf4).hint("Flying Swords");
         addButton(7, "Shelf 5", soulequipmentshelf5).hint("Consumables");
         addButton(8, "Shelf 6", soulequipmentshelf6).hint("Misc");
-		//addButton(7, weapons.MACE.shortName, weaponBuy, weapons.MACE);//awl - wymagać bedzie możliwość lewitacji czy coś od PC aby to używać
-        //addButton(12, "Talk", ).hint("Tak with .");
+	//addButton(7, weapons.MACE.shortName, weaponBuy, weapons.MACE);
+	//awl - wymagać bedzie możliwość lewitacji czy coś od PC aby to używać
+	//Google Translation: will require the possibility of levitation or something from the PC to use it
+        //addButton(12, "Talk", ).hint("Talk with .");
         addButton(14, "Back", riverislandVillageStuff);
         statScreenRefresh();
     }
     public function soulequipmentshelf1():void {
         menu();
-		addButton(0, weapons.TRASAXE.shortName, weaponBuy1, weapons.TRASAXE);
+	addButton(0, weapons.TRASAXE.shortName, weaponBuy1, weapons.TRASAXE);
         addButton(1, weaponsrange.TRSXBOW.shortName, weaponBuy1, weaponsrange.TRSXBOW);
         addButton(2, shields.TRASBUC.shortName, weaponBuy1, shields.TRASBUC);
         addButton(3, armors.TRASARM.shortName, weaponBuy1, armors.TRASARM);
@@ -613,7 +621,9 @@ public class HeXinDao extends BaseContent
 		else addButtonDisabled(0, "???", "Req. Soul Apprentice");
         if (player.findPerk(PerkLib.SoulPersonage) >= 0) addButton(1, armors.HAYOARM.shortName, weaponBuy3, armors.HAYOARM);
 		else addButtonDisabled(1, "???", "Req. Soul Personage");
-        //addButton(11, weapons.MACE.shortName, weaponBuy, weapons.MACE);//basic armor made of soulmetal that works with unhindered perk xD czyli coś ala bikini lub ogólnie tylko underwear z fragmentami zbroi lewitującymi wokół postaci i tylko w wypadku ataku wroga przesuwające sie aby przyjąć atak
+        //addButton(11, weapons.MACE.shortName, weaponBuy, weapons.MACE);//basic armor made of soulmetal that works with unhindered perk xD 
+		//czyli coś ala bikini lub ogólnie tylko underwear z fragmentami zbroi lewitującymi wokół postaci i tylko w wypadku ataku wroga przesuwające sie aby przyjąć atak
+		//Google Translate: i.e. something ala bikini or generally only underwear with pieces of armor levitating around the character and only in the event of an enemy attack, they shift to take the attack
         //addButton(12, weapons.MACE.shortName, weaponBuy, weapons.MACE);//basic light armor made of soulmetal
         //addButton(10, weapons.MACE.shortName, weaponBuy, weapons.MACE);//basic heavy armor made of soulmetal
         addButton(14, "Back", serenamerchant);
@@ -770,17 +780,17 @@ public class HeXinDao extends BaseContent
 	public function entranceToRiverDungeon():void {
 		clearOutput();
 		if (flags[kFLAGS.NEISA_FOLLOWER] == 0) {
-			outputText("As you approach the cave a bunch of heavily armored guards stops you. You can barely see under their helmets.\n\n");
+			outputText("As you approach the cave a bunch of heavily armored guards stop you. You can barely see under their helmets.\n\n");
 			outputText("\"<i>Hey, you there! Hold! This cave is dangerous, we can’t just let you head in by yourself. You must go with someone else, where is your partner?</i>\"\n\n");
 			outputText("Partner? What partner?\n\n");
-			outputText("\"<i>Your teammate you moron. This place has claimed more adventurers lives then the wild of Mareth by now and it's obvious no one should go in there alone.</i>\"\n\n");
+			outputText("\"<i>Your teammate you moron. This place has claimed more adventurer's lives than the wild of Mareth by now and it's obvious no one should go in there alone.</i>\"\n\n");
 			outputText("It seems like these people won’t let you go in the cave without a teammate.\n\n");
 			flags[kFLAGS.NEISA_FOLLOWER] = 1;
-			outputText("You decide to play by the rules and go find another hero to team with. The problem is where to even look for one?\n\n");
+			outputText("You decide to play by the rules and go find another hero to team up with. The problem is where to even look for one?\n\n");
 			doNext(riverislandVillageStuff);
 		}
 		else {
-			outputText("Seeing as you come as a team the guards let you in, but not before issuing a final warning.\n\n");
+			outputText("Seeing as you came as a team the guards let you in, but not before issuing a final warning.\n\n");
 			outputText("\"<i>Try not to die down there, a lot of people went in and never came back.</i>\"\n\n");
 			outputText("You will keep that in mind.\n\n");
 			doNext(riverdungeon.enterDungeon);
@@ -789,9 +799,9 @@ public class HeXinDao extends BaseContent
 
     public function ermaswiftarrowmerchant():void {
         clearOutput();
-        outputText("After entering the shop with a sign saying 'Soul Arrow' over the doors you see a few shelves filled with various ranged weapons of all sorts, from bows, to crossbows, to some more exotic ones that you aren't even sure what they are called. ");
-        outputText("Behind the desk in the central point of the shop you see a centauress. She has no fancy or provocative clothes, sports an average body with which she moves quite gracefully around the shelves with items for sale despite her naturally larger body than most of the people living here have.");
-        outputText("\n\n\"<i>Greetings, my name is Erma Swiftarrow and this is my shop. Go ahead and look around, if something catches your eyes let me know,</i>\" she say all that almost entirely in one breath after noticing your presence.");
+        outputText("After entering the shop with a sign saying 'Soul Arrow' over the doors you see a few shelves filled with various ranged weapons of all sorts, from bows, to crossbows, to some more exotic ones that you aren't even sure what they're called. ");
+        outputText("Behind the desk in the central point of the shop you see a centauress. She has no fancy or provocative clothes and sports an average centauress' body with which she moves quite gracefully around the shelves despite her having a naturally larger body than most of the people living here have.");
+        outputText("\n\n\"<i>Greetings, my name is Erma Swiftarrow and this is my shop. Go ahead and look around, if something catches your eye let me know,</i>\" she says all that almost entirely in one breath after noticing your presence.");
         menu();
         addButton(0, weaponsrange.BOWLIGH.shortName, weaponrangeBuy, weaponsrange.BOWLIGH);
         addButton(1, weaponsrange.BOWHUNT.shortName, weaponrangeBuy, weaponsrange.BOWHUNT);
@@ -801,7 +811,9 @@ public class HeXinDao extends BaseContent
         addButton(6, weaponsrange.HUXBOW_.shortName, weaponrangeBuy, weaponsrange.HUXBOW_);
         addButton(7, weaponsrange.HEXBOW_.shortName, weaponrangeBuy, weaponsrange.HEXBOW_);
         //addButton(4, weapons.MACE.shortName, weaponBuy, weapons.MACE);
-        //addButton(8, weapons.MACE.shortName, weaponBuy, weapons.MACE);//awl - wymagać bedzie możliwość lewitacji czy coś od PC aby to używać
+        //addButton(8, weapons.MACE.shortName, weaponBuy, weapons.MACE);
+	//awl - wymagać bedzie możliwość lewitacji czy coś od PC aby to używać
+	//Google Translation: awl - will require the possibility of levitation or something from the PC to use it
         //addButton(9, weapons.MACE.shortName, weaponBuy, weapons.MACE);//bow made for soul cultivator xD
         addButton(13, "Training", ermaswiftarrowmerchantarcherytraining).hint("Archery training.");
         addButton(14, "Back", riverislandVillageStuff);
@@ -827,13 +839,12 @@ public class HeXinDao extends BaseContent
         statScreenRefresh();
         inventory.takeItem(itype, ermaswiftarrowmerchant);
     }
-	
 	public function ermaswiftarrowmerchantarcherytraining():void {
 		clearOutput();
 		if (flags[kFLAGS.ERMA_ARCHERY_TRAINING] > 0) outputText("\"<i>Need more training? Sure, but it's 10 spirit stones, and as usual paid up front.</i>\"");
 		else {
 			outputText("Bows are nice and all but they won’t be of much use to you if you can’t wield them properly. You thus ask Erma if training is something the shop can provide.\n\n");
-			outputText("\"<i>Training new archers indeed is something I do but I don’t do it for free. It would be 10 spirit stones a session if you want to take a session.</i>\"");
+			outputText("\"<i>Training new archers is indeed something I do but I don’t do it for free. It'll be 10 spirit stones a session if you want the training.</i>\"");
 			flags[kFLAGS.ERMA_ARCHERY_TRAINING] = 1;
 		}
 		menu();
@@ -866,15 +877,21 @@ public class HeXinDao extends BaseContent
 	}
 
 public function soularena():void {
+			   
 	clearOutput();//arena do walk z przeciwnikami na exp tylko - zadnych sex scenes tylko walk do wygranej niewazne czy przez hp czy lust - przeciwnicy: ?weak deviant golem?, niskopoziomowi przeciwnicy uzywajacy soul skills (moze po prostu wesje zwyklych przeciwnikow ale z dodanymi soul attakami?)
+        //Google Translation: arena for fights with opponents on exp only - no sex scenes, only fights to win, no matter if by hp or lust - opponents:? weak deviant golem?
 	if (flags[kFLAGS.CHI_CHI_AFFECTION] >= 10 && flags[kFLAGS.CHI_CHI_AFFECTION] < 15) chichiScene.EnterOfTheChiChi();
 	else {
-		outputText("Coming closer to the arena you see two muscular tigersharks standing on each side of the entrance, they only briefly glance at you the moment you pass by them. IA few a moments after you entered, a tall, slightly muscular male cat-morph approaches you. Most of its body is covered by armor yet two long tails waves behind him from time to time.");//osoba zarządzająca areną bedzie male nekomanta npc
-		outputText("\n\n\"<i>Welcome to the Soul Arena. Don't start fights outside of the proper place or you will be thrown out. If you break any rules here you will be kicked out. Go ahead and pick an area where you want to train or instead go to the challenges area. Oh and fights in each section cost some spirit stones so be sure to have enough of them as we not run charity here,</i>\"");
-		outputText(" without wasting time the nekomata overseer of this place explains to you all that you needed to know about the place and walks away.\n\nSo which of the three possible areas do you want to visit this time?");
+		outputText("Coming closer to the arena you see two muscular tigersharks standing on each side of the entrance. They only briefly glance at you the moment you pass by them. A few a moments after you enter, a tall, slightly muscular male cat-morph approaches you. Most of its body is covered by armor yet two long tails waves behind him from time to time.");
+		//osoba zarządzająca areną bedzie male nekomanta npc
+		//Google Translate: the person managing the arena will be a small nekomata npc
+		outputText("\n\n\"<i>Welcome to the Soul Arena. Don't start fights outside of their designated areas or you will be thrown out. If you break any rules here you will be kicked out. Go ahead and pick an area where you want to train or go to the challenges area. Oh and fights in each section cost some spirit stones so be sure to have enough of them as we're not running a charity here,</i>\"");
+		outputText(" without wasting time the nekomata overseer of the arena explains to you all that you needed to know about the place and walks away.\n\nSo which of the three possible areas do you want to visit this time?");
 		if (flags[kFLAGS.IGNIS_ARENA_SEER] >= 1) outputText("\n\nYou notice Ignis sitting in the stands, a notebook in his paws. The kitsune seems to be watching the fights and taking notes.");
 		if (flags[kFLAGS.CHI_CHI_AFFECTION] < 1) flags[kFLAGS.CHI_CHI_AFFECTION] = 0;
-		menu();//statuseffect(soulArena) dodać na początku walk co pozwoli dać inne dropy itp. w stosunku do spotkania podobnego wroga w innym miejscu a nawet łatwo pozwoli zrobić wersje soulforce niektórych ras bez tworzenia nowych opisów monsterów - zrobić to dla trybu challenge, w który walka z wrogie da określony drop a nawet można na niej grać aby uzyskać nagro...np. nowego camp member ^^
+		menu();
+		//statuseffect(soulArena) dodać na początku walk co pozwoli dać inne dropy itp. w stosunku do spotkania podobnego wroga w innym miejscu a nawet łatwo pozwoli zrobić wersje soulforce niektórych ras bez tworzenia nowych opisów monsterów - zrobić to dla trybu challenge, w który walka z wrogie da określony drop a nawet można na niej grać aby uzyskać nagro...np. nowego camp member ^^
+		//Google Translate: statuseffect (soulArena) add at the beginning of the fights which will allow you to give other drops, etc. in relation to the meeting of a similar enemy in another place and even easily allows you to make soulforce versions of some races without creating new descriptions of monsters - do it for the challenge mode, in which the fight with the enemy will give a specific drop and you can even play on it to get a reward... e.g. a new camp member ^^
 		if (flags[kFLAGS.SPIRIT_STONES] < 1) addButtonDisabled(0, "Solo", "To go to the section of soul arena for 1 on 1 fights you need to give 1 spirit stone.");
 		else addButton(0, "Solo", soularenaSolo).hint("Go to the section of soul arena for 1 on 1 fights.");
 		if (flags[kFLAGS.SPIRIT_STONES] < 2) addButtonDisabled(1, "Group", "To go to the section of soul arena for group fights you need to give 2 spirit stones.");
@@ -934,24 +951,26 @@ public function soularena():void {
     public function soularenaChallenge():void {
         clearOutput();
         flags[kFLAGS.SPIRIT_STONES] -= 3;
-        outputText("Picking the one in the middle you prepare for the challanges. You enter the area and look around for anyone currently available for a challenge.");
+        outputText("Picking the one in the middle you prepare for the challenges. You enter the area and look around for anyone currently available for a challenge.");
         statScreenRefresh();
 		soularenaChallengeSubpages();
     }
 	private function soularenaChallengeSubpages(page:int = 1):void {
 		menu();
 		if (page == 1) {
-			if (player.statusEffectv1(StatusEffects.SoulArenaGaunlets1) > 1) addButtonDisabled(0, "Gaunlet 1", "You already won this gauntlet today. Come back tomorrow.");
-			else addButton(0, "Gaunlet 1", gaunletchallange1fight1).hint("Fight 3 diff enemies one after another.");
+			if (player.statusEffectv1(StatusEffects.SoulArenaGaunlets1) > 1) addButtonDisabled(0, "Gauntlet 1", "You've already won this gauntlet today. Come back tomorrow.");
+			else addButton(0, "Gauntlet 1", gaunletchallange1fight1).hint("Fight 3 different enemies one after another.");
 			if (player.statusEffectv1(StatusEffects.SoulArenaGaunlets1) > 0) {
-				if (player.statusEffectv2(StatusEffects.SoulArenaGaunlets1) > 1) addButtonDisabled(1, "Gaunlet 2", "You already won this gauntlet today. Come back tomorrow.");
-				else addButton(1, "Gaunlet 2", gaunletchallange2fight1).hint("Fight 4 diff enemies one after another.");
+				if (player.statusEffectv2(StatusEffects.SoulArenaGaunlets1) > 1) addButtonDisabled(1, "Gauntlet 2", "You've already won this gauntlet today. Come back tomorrow.");
+				else addButton(1, "Gauntlet 2", gaunletchallange2fight1).hint("Fight 4 different enemies one after another.");
 			}
-			else addButtonDisabled(1, "Gaunlet 2", "You need to finish Gauntlet 1 first.");
-			//addButton(2, "Gaunlet 3", gaunletchallange3).hint("Fight 5 diff enemies one after another.");
-			//addButton(3, "Gaunlet 4", gaunletchallange4).hint("Fight 6 diff enemies one after another.");
-			//addButton(4, "Gaunlet 5", gaunletchallange5).hint("Fight 7 diff enemies one after another.");
-			//addButton(5, "Gaunlet 6", gaunletchallange6).hint("Fight 8 diff enemies one after another.");gdzieś tam tu dodać grupowe tylko walki dające na pierwszej walce oblokowanie perków do powiekszania drużyny
+			else addButtonDisabled(1, "Gauntlet 2", "You need to finish Gauntlet 1 first.");
+			//addButton(2, "Gauntlet 3", gauntletchallange3).hint("Fight 5 different enemies one after another.");
+			//addButton(3, "Gauntlet 4", gauntletchallange4).hint("Fight 6 different enemies one after another.");
+			//addButton(4, "Gauntlet 5", gauntletchallange5).hint("Fight 7 different enemies one after another.");
+			//addButton(5, "Gauntlet 6", gaunletchallange6).hint("Fight 8 different enemies one after another.");
+			//gdzieś tam tu dodać grupowe tylko walki dające na pierwszej walce oblokowanie perków do powiekszania drużyny
+            		//Google Translation: somewhere over there add only group fights that allow you to block perks to increase your team on the first fight
 			addButton(7, "LvL 24 Gargoyle (F)", arenaSelection,GargoyleFBasic).hint("Gargoyle (F) LVL 24 (axe-tail)");
 			addButton(8, "LvL 24 Gargoyle (M)", arenaSelection,GargoyleMBasic).hint("Gargoyle (M) LVL 24 (mace-tail)");
 			addButton(9, "-2-", soularenaChallengeSubpages, page + 1);
@@ -977,6 +996,7 @@ public function soularena():void {
 		if (flags[kFLAGS.CHI_CHI_AFFECTION] < 10) flags[kFLAGS.CHI_CHI_AFFECTION]++;
 		startCombat(new mon());
 		monster.createStatusEffect(StatusEffects.NoLoot, 0, 0, 0, 0);
+										  
     }
 	public function gaunletsinbetween():void {
 		cleanupAfterCombat();
@@ -985,7 +1005,7 @@ public function soularena():void {
 	}
     public function gaunletchallange1fight1():void {
         clearOutput();
-        outputText("You register for the gauntlet challenge, and wait patiently until you are called, and move out beyond the arena gate to face your opponent. The crowd is big, you certainly have quite the audience! A man with a necktie and a weird stick screams across the area.\n\n");
+        outputText("You register for the gauntlet challenge, and wait patiently until you are called, then move out beyond the arena gate to face your opponent. The crowd is big, you certainly have quite the audience! A man with a necktie and a weird stick screams across the area.\n\n");
         outputText("\"<i>Ladies and gentlemen! Today a new gladiator enters the arena seeking the glory of the gauntlet! A triple battle for gold and fame!</i>\"\n\n");
         outputText("The crowd cheers for you loudly.\n\n");
         outputText("\"<i>We start with an old timer everyone know about, yet even if it is only the warm up do beware... the Dummy golems!!!</i>\"\n\n");
@@ -1010,7 +1030,7 @@ public function soularena():void {
 		gaunletsinbetween();
 		outputText("\n\nAs the tentacle beast whimpers and crawls away, the crowd cheers for you. Here comes the final round.\n\n");
         outputText("\"<i>This contestant is smaller than the last two... Smarter too, and most of all extremely deadly. She’s paid a handsome sack of gems daily to kick the ass of anyone who reaches this stage, yet is by far the deadliest combatant of her division. She’s your favorite and an expert huntress. Here she comes... Merisiel the dark elf!!!</i>\"\n\n");
-        outputText("A woman with dark skin walks by the entrance of the arena with only a bow for a weapon. She sure does look like an elf, however. She’s nothing like the gentle creature from your childhood stories as she observes you with a cruel, calculative gaze. The dark elf readies her bow, smirking.\n\n");
+        outputText("A woman with dark skin walks by the entrance of the arena with only a bow for a weapon. She sure does look like an elf, however she’s nothing like the gentle creature from your childhood stories as she observes you with a cruel, calculative gaze. The dark elf readies her bow, smirking.\n\n");
         startCombat(new DarkElfScout());
         monster.createStatusEffect(StatusEffects.NoLoot, 0, 0, 0, 0);
     }
@@ -1018,13 +1038,13 @@ public function soularena():void {
         clearOutput();
         outputText("You exit the arena, victorious, basking in the cheering of the crowd and go to the prize counter for your reward. A woman greets you.\n\n");
         if (player.statusEffectv1(StatusEffects.SoulArenaGaunlets1) == 1) {
-            outputText("\"<i>Good show, champion. As a reward for your performance, please accept these 15 spirit stones. Please do come back again and maybe next time you could even try the harder challenge.</i>\"\n\n");
+            outputText("\"<i>Good show, champion. As a reward for your performance, please accept these 15 spirit stones. Please do come back again and maybe next time you could even try a harder challenge.</i>\"\n\n");
             player.addStatusValue(StatusEffects.SoulArenaGaunlets1, 1, 1);
 			flags[kFLAGS.SPIRIT_STONES] += 15;
             cleanupAfterCombat();
         }
         else {
-            outputText("\"<i>Good show, champion. As a reward for your performance, please accept this magical bow. Please do come back again and maybe next time you could even try the harder challenge.</i>\"\n\n");
+            outputText("\"<i>Good show, champion. As a reward for your performance, please accept this magical bow. Please do come back again and maybe next time you could even try a harder challenge.</i>\"\n\n");
             if (player.hasStatusEffect(StatusEffects.SoulArenaGaunlets1)) player.addStatusValue(StatusEffects.SoulArenaGaunlets1, 1, 2);
 			else player.createStatusEffect(StatusEffects.SoulArenaGaunlets1, 2, 0, 0, 0);
             inventory.takeItem(weaponsrange.BOWGUID, cleanupAfterCombat);
@@ -1034,7 +1054,7 @@ public function soularena():void {
 		clearOutput();
 		outputText("As you enter the arena you spot your opponent at the other edge of the battlefield. It’s a goblin not unlike those you've met in the wilderness, however she’s armed with a set of throwing knives and other gear you don’t see normally on those critters.\n\n");
         outputText("The voice of the announcer rings across the stadium.\n\n");
-        outputText("\"<i>Ladies and gentlemans, today someone challenged the second ranking gladiatorial test. Can this would be hero defeat all three opponent and earn not only a large sum of gems as well as the right to brag for a full month?! LET'S FIND OUT!</i>\"\n\n");
+        outputText("\"<i>Ladies and gentlemen, today someone has challenged the second ranking gladiatorial test. Can this would-be hero defeat all three opponents and earn not only a large sum of gems, but the right to brag for a full month as well?! LET'S FIND OUT!</i>\"\n\n");
         outputText("The gates open and the goblin charges at you, weapon at the ready.\n\n");
         player.createStatusEffect(StatusEffects.SoulArena, 0, 0, 0, 0);
         player.createStatusEffect(StatusEffects.SoulArenaGaunlet, 0, 0, 0, 0);
@@ -1054,17 +1074,17 @@ public function soularena():void {
 	public function gaunletchallange2fight3():void {
 		clearOutput();
 		gaunletsinbetween();
-		outputText("\n\nThe mutt falls defeated to the floor as the crowd screams your name. The announcer announce the next contestant.\n\n");
-        outputText("\"<i>The next opponent is a fighter known and loved by the public. You have heard her name told in shallow whispers, for the next opponent is an expert of the terrible art known as BDSM. Yes you have all been waiting for her so let's hear it for Malady the drider!!!</i>\"\n\n");
-        outputText("A drider in bondage suit comes out of the gate and eyes you amused.\n\n");
-        outputText("\"<i>So... you are my opponent, huh? You don’t look like much. Little pet, by the time I’m done binding you, you will be calling me mistress!</i>\"\n\n");
+		outputText("\n\nThe mutt falls defeated to the floor as the crowd screams your name. The announcer announces the next contestant.\n\n");
+        outputText("\"<i>The next opponent is a fighter known and loved by the public. You have heard her name told in whispers, for the next opponent is an expert of the terrible art known as BDSM. Yes you have all been waiting for her so let's hear it for Malady the drider!!!</i>\"\n\n");
+        outputText("A drider in bondage suit comes out of the gate and eyes you, amused.\n\n");
+        outputText("\"<i>So... you are my opponent, huh? You don’t look like much. By the time I’m done binding you, little pet, you will be calling me mistress!</i>\"\n\n");
         startCombat(new CorruptedDrider());
         monster.createStatusEffect(StatusEffects.NoLoot, 0, 0, 0, 0);
 	}
 	public function gaunletchallange2fight4():void {
 		clearOutput();
 		gaunletsinbetween();
-		outputText("\n\nAs the drider falls defeated the crowd cheers to your victory. That said the battle is far from over yet. A large number of shadows mass behind the opposite gate and already you can guess what's coming up for you.\n\n");
+		outputText("\n\nAs the drider falls defeated the crowd cheers for your victory. That said the battle is far from over yet. A large number of shadows mass behind the opposite gate and you can already guess what's coming up for you next.\n\n");
         outputText("\"<i>The final contestant is both a new opponent and a test! The town golemancer has been working extra shifts on these things she calls her babies!! Using the traditional gargoyle model but deprived of a soul for the purpose of mass production, these living weapons will mercilessly beat the hell out of the contestant! Who do you think will win, the living or the artificial creation? LEEEEETS FIND OUT!!!!!!</i>\"\n\n");
         outputText("A full squad of stone gargoyles pour out of the gate, their mace like tail trailing in the sands. Their claws are sharp and their soulless gaze tells you it will end poorly should you lose.\n\n");
         startCombat(new BossGolems());
@@ -1073,17 +1093,17 @@ public function soularena():void {
 	public function gaunletchallange2postfight():void {
 		clearOutput();
 		outputText("The last gargoyle crumbles to rubble and you hold its head up toward the public in victory.\n\n");
-        outputText("\"<i>The challenger defeated all of their opponents, what a miracle! Challenger, you may now exit the arena and claim your prize, well done!</i>\"\n\n");
+        outputText("\"<i>The challenger has defeated all of their opponents! what a miracle! Challenger, you may now exit the arena and claim your prize, well done!</i>\"\n\n");
         outputText("You make your way towards the exit and to your surprise meet face to face with the town golemancer. She grudgingly hands you your reward.\n\n");
         outputText("\"<i>I’m supposed to reward you ");
         if (player.statusEffectv2(StatusEffects.SoulArenaGaunlets1) == 1) {
-			outputText("a full chest of spirit stones. Tsk, I guess my golems were not ready yet. Next time if you do show up, be ready because my future creations will definitely make a bloody mess out of you.</i>\"\n\n");
+			outputText("a full chest of spirit stones. Tsk, I guess my golems weren't ready yet. Next time you show up, be ready because my future creations will definitely make a bloody mess out of you.</i>\"\n\n");
 			player.addStatusValue(StatusEffects.SoulArenaGaunlets1, 2, 1);
 			flags[kFLAGS.SPIRIT_STONES] += 20;
             cleanupAfterCombat();
 		}
 		else {
-			outputText("with this scepter. Tsk, I guess my golems were not ready yet. Next time if you do show up, be ready because my future creation will definitely make a bloody mess out of you.</i>\"\n\n");
+			outputText("with this scepter. Tsk, I guess my golems weren't ready yet. Next time you show up, be ready because my future creation will definitely make a bloody mess out of you.</i>\"\n\n");
 			player.addStatusValue(StatusEffects.SoulArenaGaunlets1, 2, 2);
 			inventory.takeItem(weapons.SCECOMM, cleanupAfterCombat);
 		}
@@ -1099,9 +1119,10 @@ public function soularena():void {
 		if (player.hasStatusEffect(StatusEffects.GolemancerShop)) {
 			outputText("The goblin golemancer answers at the counter as you walk in.\n\n");
 			outputText("\"<i>What spicing will it be?</i>\"");
+			//What on earth is 'spicing' supposed to mean in this context?
 		}
 		else {
-			outputText("You enter a shop filled with what appears to be stone body parts, weird arcanic objects and other items needed to craft golems. A small goblin answers at the counter, semi annoyed at having to pause her work.\n\n");
+			outputText("You enter a shop filled with what appears to be stone body parts, weird arcanic objects, and other items needed to craft golems. A small goblin answers at the counter, semi annoyed at having to pause her work.\n\n");
 			outputText("\"<i>Welcome to my shop " + player.mf("mister", "miss") + ", what are ya here to buy?</i>\"");
 			player.createStatusEffect(StatusEffects.GolemancerShop, 0, 0, 0, 0);
 		}
@@ -1124,15 +1145,16 @@ public function soularena():void {
 		if (player.hasPerk(PerkLib.JobGolemancer)) {
 			if (player.statusEffectv1(StatusEffects.GolemancerShop) == 0) addButton(13, "'Free Cores?'", golemancershopNotSoFreeCores).hint("A dark side of you whispers: 'Dew it!!! Press this button!!! Dew it now!!!'");
 			else if (player.statusEffectv1(StatusEffects.GolemancerShop) == 0) addButtonDisabled(13, "'Free Cores?'", "You already 'Dew It and pressed the button'. No more freebies for ya...")
-			else addButtonDisabled(13, "'Free Cores?'", "How could such an esteemed and well known golemancer like you ask for freebies? Go smash a few golems to take their cores instead to try beg her...")
+			else addButtonDisabled(13, "'Free Cores?'", "How could such an esteemed and well known golemancer like you ask for freebies? Go smash a few golems to take their cores instead of trying to beg for some from her...")
+																			  
 		}
 		addButton(14, "Leave", riverislandVillageStuff);
 	}
 	private function golemancershopNotSoFreeCores():void {
 		clearOutput();
 		outputText("You ask if the goblin would have any free supplies for a fellow golemancer.\n\n");
-		outputText("\"<i>Well as a matter of fact I do. I give these away for first timers. You can have one and one of those packages, got to keep myself competitive after all. <b>Still, you will owe me a favor later on.</b></i>\"\n\n");
-		outputText("<b>You have now 15 golem cores in your bag for making new golems!</b>\n\n");
+		outputText("\"<i>Well as a matter of fact I do. I give these away to first timers. You can have one and one of those packages, got to keep myself competitive after all. <b>Still, you will owe me a favor later on.</b></i>\"\n\n");
+		outputText("<b>You now have 15 golem cores in your bag for making new golems!</b>\n\n");
 		player.addStatusValue(StatusEffects.GolemancerShop, 1, 1);
 		flags[kFLAGS.REUSABLE_GOLEM_CORES_BAG] += 15;
 		doNext(golemancershopRepeat);
@@ -1149,7 +1171,7 @@ public function soularena():void {
 		}
 		if (player.statusEffectv1(StatusEffects.GolemancerShop) == 0) {
 			outputText("Come to think of it you have been a very faithful customer so I will make you a one time deal by cuting the price down by two thirds of the total. 500 gems and it's yours.</i>\"");
-			if (player.gems > 499) addButtonDisabled(1, "Buy", "You not have enough gems to buy this.");
+			if (player.gems > 499) addButtonDisabled(1, "Buy", "You do not have enough gems to buy this.");
 			else addButton(1, "Buy", golemancershopPermGolemsUpgradesGuideYes);
 		}
 		addButton(3, "Don't Buy", golemancershopRepeat);
@@ -1205,7 +1227,7 @@ public function soularena():void {
         outputText("\n\n\"<i>Hello my name is ");
         if (flags[kFLAGS.CHI_CHI_FOLLOWER] > 1) outputText("Rin");
         else outputText("Chi Chi");
-        outputText(" and I will be your waitress today. We have dumplings, Won ton soups and ramen offered in mild, spicy and inferno versions of the dishes. What will it be?</i>\"");
+        outputText(" and I will be your waitress today. We have dumplings, Wonton soup, and ramen offered in mild, spicy and inferno versions of the dishes. What will it be?</i>\"");
         menu();
         addButton(0, "Dumpling", orderFood,0,5,0).hint("Effects: +Spe, +Tou", "Dumpling");
         addButton(1, "Soup", orderFood,0,0,5).hint("Effects: +Int, +Tou", "Soup");
